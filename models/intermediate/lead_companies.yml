@@ -1,0 +1,12 @@
+version: 2
+
+models:
+  - name: lead_companies
+    description: ""
+
+    columns:
+      - name: company_name
+        description: ''
+        data_tests:
+          - unique
+          - not_null

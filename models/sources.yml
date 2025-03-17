@@ -1,0 +1,13 @@
+
+version: 2
+
+sources:
+  - name: raw_data
+    database: brekope
+    config:
+      enabled: true
+    tables:
+      - name: salesforce_leads  # enabled
+      - name: source1  # enabled
+      - name: source2  # enabled
+      - name: source3  # enabled

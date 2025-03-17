@@ -1,0 +1,18 @@
+version: 2
+
+models:
+  - name: prep__salesforce_leads
+    description: ""
+
+    columns:
+      - name: salesforce_lead_id
+        description: >
+          {{ doc("salesforce_lead_id") }}
+        data_tests:
+          - unique
+          - not_null
+      - name: phone
+        description: ''
+        data_tests:
+          - unique
+          - not_null

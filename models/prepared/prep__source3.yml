@@ -1,0 +1,12 @@
+version: 2
+
+models:
+  - name: prep__source3
+    description: ""
+
+    columns:
+      - name: phone
+        description: ''
+        data_tests:
+          - unique
+          - not_null
