@@ -54,7 +54,7 @@ select
 from salesforce
 full outer join {{ ref('inter__source1') }} as source1
    on salesforce.phone = source1.phone
-full outer join {{ ref('inter__source2') }} as source1
+full outer join {{ ref('inter__source2') }} as source2
    on salesforce.phone = source2.phone
 full outer join {{ ref('inter__source3') }} as source3
-   on salesforce.phone = prep__source3.phone
+   on salesforce.phone = source3.phone

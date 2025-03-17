@@ -11,11 +11,14 @@ select
     /* FKs */
     , {{ dbt_utils.generate_surrogate_key(['company_name']) }} as company_sk
     , {{ dbt_utils.generate_surrogate_key(['email']) }} as contact_sk
-    , {{ dbt_utils.generate_surrogate_key(['source1']) }} as source1_sk
-    , {{ dbt_utils.generate_surrogate_key(['source2']) }} as source2_sk
-    , {{ dbt_utils.generate_surrogate_key(['source3']) }} as source3_sk
+    , {{ dbt_utils.generate_surrogate_key(['source1']) }} as credentails_sk
+    , {{ dbt_utils.generate_surrogate_key(['source2']) }} as company_schedule_sk
+    , {{ dbt_utils.generate_surrogate_key(['source3']) }} as permits_sk
 
     /* Facts */
+    , capacity
+    , current_enrollment
+    , is_new_lead
 
     /* timestamps and dates */
     , created_at_utc

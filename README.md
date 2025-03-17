@@ -14,9 +14,18 @@ The project follows a standard three-layer model architecture:
 Dimensions:
 - Companies – Includes company name, address, type, grades serviced, etc.
 - Contacts – Includes name, phone, email, etc. Assumes email is unique, though real data may require de-duplication.
+- Credentials – Source 1 primarily contains additional information about company credentials. Given more time, I may integrate this data into the company dimension.
+- Company Schedule – Source 2 primarily contains additional information about company schedules and subsidaries. Given more time, I may integrate this data into the company dimension.
+- Permits – Source 3 primarily contains additional information about company permits. Given more time, I may integrate this data into the company dimension.
 
 Facts
 - Leads – Captures lead-related information.
+
+The `is_new_lead` boolean flags leads that are not yet included in Salesforce and could be used to identify new leads. 
+The `created_at_utc` identifies when the load was created in Saleforce, it will be null if the lead does not exist in Saleforce.
+The `status` and `last_activity` date columns can be used to get an idea of what leads are being worked on now or recently.
+The `is_converted` flag and `lead_source` could be used to identify which lead source is performing the best over time.
+
 
 ## Exploring the data
 Before modeling, I explored the dataset and found:
@@ -32,9 +41,18 @@ Before modeling, I explored the dataset and found:
 - All timestamps are in UTC.
 
 ## Future
-With more time, I would enhance:
+With more time, I would enhance the project by:
 
-- Incremental models – The full dataset is likely much larger, requiring incremental processing.
-- Documentation – Complete YAML documentation for all models and columns, including source data.
-- Company hours – Incorporate company hours from Source 2 into a separate dimension.
+Incremental Models – The full dataset is likely much larger, requiring incremental processing for efficiency.
 
+Documentation – Completing YAML documentation for all models and columns, including source data.
+
+Implementing SCDs – Since new data overwrites old data, it may be difficult to track how leads move through different statuses to conversion. Creating Slowly Changing Dimensions (SCDs) would help maintain this history.
+
+Expanding Testing – Adding more tests to ensure leads are not being dropped from one layer to the next.
+
+Improving Lead Matching – Currently, leads are joined across sources using only phone numbers. Given more time, I would incorporate matching by addresses and possibly company names.
+
+Cleaning Address Data – I started cleaning address and state data but realized it would take longer than the allotted time. For a production implementation, I would fully clean the addresses and integrate them into the matching process.
+
+Two hours is a limited timeframe for a project like this. A more in-depth exploratory analysis would be necessary to develop a logical model that fully meets business requirements. However, this serves as a starting point for tracking leads in Salesforce while incorporating external source data.
