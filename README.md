@@ -6,9 +6,9 @@ This dbt project consolidates multiple lead sources into reusable facts and dime
 The project follows a standard three-layer model architecture:
 
 # Architecture
-- Prepared: Stages raw data, renames columns, adjusts data types, and creates base views for transformations. These are views.
-- Intermediate: Performs the core transformations, including joins. This layer is incremental or table-based, depending on data size and complexity, with tests to prevent bad data from reaching stakeholders.
-- Mart: The final, consumer-facing layer containing facts and dimensions. It also includes models for reporting or BI tools.
+- Prepared Layer: Stages raw data by renaming columns, adjusting data types, and creating base views for transformations. These models are implemented as views.
+- Intermediate Layer: Handles core transformations, including joins and complex logic. Currently, models are materialized as tables for efficiency, but with real data, this layer would be incremental. The choice between incremental or table-based models depends on data size and complexity. This layer also incorpartes unique and not null test to prevent bad data from reaching stakeholders.
+- Mart Layer: The final, consumer-facing layer containing facts and dimensions. This layer generates surrogate keys, and with more time, reporting models would be built.
 
 # Final Models
 Dimensions:
@@ -22,7 +22,7 @@ Facts
 - Leads – Captures lead-related information.
 
 The `is_new_lead` boolean flags leads that are not yet included in Salesforce and could be used to identify new leads. 
-The `created_at_utc` identifies when the load was created in Saleforce, it will be null if the lead does not exist in Saleforce.
+The `created_at_utc` identifies when the lead was created in Saleforce, it will be null if the lead does not exist in Saleforce.
 The `status` and `last_activity` date columns can be used to get an idea of what leads are being worked on now or recently.
 The `is_converted` flag and `lead_source` could be used to identify which lead source is performing the best over time.
 
@@ -31,8 +31,8 @@ The `is_converted` flag and `lead_source` could be used to identify which lead s
 Before modeling, I explored the dataset and found:
 
 - No companies appeared in multiple sources.
-- No consistent company names, addresses, or primary contacts across sources.
-- If the full dataset contained duplicate companies across sources, address or email could potentially be used for matching.
+- No consistent phone, company names, addresses, or primary contacts across sources.
+- If the full dataset contained duplicate companies across sources, phone, address or email could be used for matching and deduplicainng the facts and dimensions. 
 
 
 ## Assumptions

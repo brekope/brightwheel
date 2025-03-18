@@ -11,9 +11,9 @@ select
     /* FKs */
     , {{ dbt_utils.generate_surrogate_key(['company_name']) }} as company_sk
     , {{ dbt_utils.generate_surrogate_key(['email']) }} as contact_sk
-    , {{ dbt_utils.generate_surrogate_key(['source1']) }} as credentails_sk
-    , {{ dbt_utils.generate_surrogate_key(['source2']) }} as company_schedule_sk
-    , {{ dbt_utils.generate_surrogate_key(['source3']) }} as permits_sk
+    , {{ dbt_utils.generate_surrogate_key(['source1_phone']) }} as credentails_sk
+    , {{ dbt_utils.generate_surrogate_key(['source2_phone']) }} as company_schedule_sk
+    , {{ dbt_utils.generate_surrogate_key(['source3_phone']) }} as permits_sk
 
     /* Facts */
     , capacity
