@@ -43,16 +43,11 @@ Before modeling, I explored the dataset and found:
 ## Future
 With more time, I would enhance the project by:
 
-Incremental Models – The full dataset is likely much larger, requiring incremental processing for efficiency.
-
-Documentation – Completing YAML documentation for all models and columns, including source data.
-
-Implementing SCDs – Since new data overwrites old data, it may be difficult to track how leads move through different statuses to conversion. Creating Slowly Changing Dimensions (SCDs) would help maintain this history.
-
-Expanding Testing – Adding more tests to ensure leads are not being dropped from one layer to the next.
-
-Improving Lead Matching – Currently, leads are joined across sources using only phone numbers. Given more time, I would incorporate matching by addresses and possibly company names.
-
-Cleaning Address Data – I started cleaning address and state data but realized it would take longer than the allotted time. For a production implementation, I would fully clean the addresses and integrate them into the matching process.
+- Incremental Models – The full dataset is likely much larger, requiring incremental processing for efficiency.
+- Documentation – Completing YAML documentation for all models and columns, including source data.
+- Implementing SCDs – Since new data overwrites old data, it may be difficult to track how leads move through different statuses to conversion. Creating Slowly Changing Dimensions (SCDs) would help maintain this history.
+- Expanding Testing – Adding more tests to ensure leads are not being dropped from one layer to the next.
+- Improving Lead Matching – Currently, leads are joined across sources using only phone numbers. Given more time, I would incorporate matching by addresses and possibly company names.
+- Cleaning Address Data – I started cleaning address and state data but realized it would take longer than the allotted time. For a production implementation, I would fully clean the addresses and integrate them into the matching process.
 
 Two hours is a limited timeframe for a project like this. A more in-depth exploratory analysis would be necessary to develop a logical model that fully meets business requirements. However, this serves as a starting point for tracking leads in Salesforce while incorporating external source data.
